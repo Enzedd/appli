@@ -1,0 +1,14 @@
+{
+    "name": "enzo/applimaster",
+    "type": "project",
+    "license": "None",
+    "authors": [
+        {
+            "name": "Enzedd",
+            "email": "homannenzo@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^0.8.6"
+    }
+}
