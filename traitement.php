@@ -33,24 +33,7 @@
                 //on redirige vers la liste des produits
                 header("Location:index.php");
                 die;
-            //ajout de produit
-            case "add": 
-                if(isset($_POST['submit'])){
-
-                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
-                    $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                    
-                    if($name && $price){
-                        
-                        $manager->insert($name, $price);    //ajout en base de données
-                        MS::setMessage("success", "Produit ajouté avec succès !!");                        
-                    }
-                    else MS::setMessage("error", "Formulaire mal rempli, réessayez !");
-                }
-                else MS::setMessage("error", "Vous n'avez pas soumis le formulaire...");
-                header("Location:index.php");
-                die;
-
+            
             //supprimer un produit avec son index
             case "delete":
                 if(isset($_SESSION['cart'][$_GET['index']])){
@@ -69,12 +52,7 @@
                 }
                 break;
 
-            //supprimer un produit en base de données
-            case "suppr": 
-                $manager->delete($_GET['id']);
-                MS::setMessage("success", "Produit supprimé avec succès !");
-                header("Location:form.php");
-                die;
+           
                 
         }//fin du switch
         //dans le cas où l'action n'a redirigé nulle part

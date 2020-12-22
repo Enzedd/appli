@@ -15,7 +15,7 @@
         foreach($products as $prod){
             echo "<article class='product-item'>",
                     "<h3>", 
-                        "<a href='?ctrl=store&action=voir&id=",$prod->getId(),"'>",
+                        "<a href='index.php?ctrl=store&action=voir&id=",$prod->getId(),"'>",
                             $prod->getName(), 
                         "</a>",
                     "</h3>",

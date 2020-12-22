@@ -10,6 +10,6 @@
 
     <a href="?ctrl=store&action=list">Liste des produits</a>
 
-    <a href="?ctrl=admin&action=panel">Administration</a>
+    <a href="?ctrl=admin">Administration</a>
     
 </nav>

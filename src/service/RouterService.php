@@ -12,7 +12,7 @@
         public static function handleRequest($params) :array
         {
         /*-----APPEL DU CONTROLEUR-----*/
-            $class = "Store";//contrôleur par défaut
+            $class = ucfirst(DEFAULT_CTRL);//contrôleur par défaut
             
             if(isset($params['ctrl'])){// ctrl = admin
                 $uri_class = ucfirst($params['ctrl']);//$uri_class = "Admin"
@@ -28,7 +28,7 @@
             $controller = new $classname();//instanciation du contrôleur
 
         /*-----APPEL DE LA METHODE DANS LE CONTROLEUR-----*/
-            $method = "indexAction";//la méthode par défaut
+            $method = DEFAULT_ACTION."Action";//la méthode par défaut
 
             if(isset($params['action'])){//action = list
                 $uri_method = $params['action']."Action";//$uri_method = "listAction"
@@ -47,5 +47,25 @@
             }
             //StoreController::listAction()
             return $controller->$method($id);//appel de la méthode du contrôleur
+        }
+
+        /**
+         * Effectue une redirection (302) en fonction des paramètres voulus
+         * 
+         * @param $params - Un tableau généré (spread operator) comme suit : 
+         * - 0 => contrôleur à instancier
+         * - 1 => méthode à appeler
+         * - 2 => id optionnel
+         * 
+         * @return void
+         */
+        public static function redirect(...$params){
+            
+            $ctrl = $params[0] ?? DEFAULT_CTRL;//si $ctrl est null, "store" est renvoyé
+            $action = $params[1] ?? DEFAULT_ACTION;
+            $id = $params[2] ?? null;
+            
+            header("Location:index.php?ctrl=$ctrl&action=$action&id=$id");
+            return;
         }
     }
