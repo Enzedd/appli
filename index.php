@@ -1,31 +1,20 @@
 <?php
-
+    //CECI EST LE FRONT CONTROLLER ! 
+    //c'est le seul fichier en dialogue avec l'utilisateur
     require "vendor/autoload.php";
 
+    use App\Service\RouterService;
+    
     session_start();
 
-    $class = "Store";
+    /*
+        $response est le retour du contrôleur nécessaire à la requète du client
+        [
+            "view" => la vue à afficher au client,
+            "data" => les données pour remplir la vue
+        ]
+    */
+    $response = RouterService::handleRequest($_GET);
 
-    if(isset($_GET["ctrl"])){
-        $uri_class = ucfirst($_GET["ctrl"]);
-        if(class_exists("App\Controller\\".$uri_class."Controller")){
-            $class = $uri_class;
-        }
-    }
-
-    $classname = "App\Controller\\".$class."Controller";
-
-    $controller = new $classname();
-
-    $method = "indexAction";
-
-    if(isset($_GET["action"])){
-        $uri_method = $_GET["action"]."Action";
-        if(method_exists($controller, $uri_method)){
-            $method = $uri_method;
-        }
-    }
-
-    $response = $controller->$method();
-
+/*-----CHARGEMENT DE LA REPONSE AU CLIENT-----*/
     include "template/store/".$response["view"];

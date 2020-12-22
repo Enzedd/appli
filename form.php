@@ -1,7 +1,9 @@
 <?php
+    require "vendor/autoload.php";
+
     session_start();    
-    require_once "MessageService.php";//j'intègre le code présent dans MessageService.php ici
-    require_once "ProductManager.php";
+    
+    use App\Manager\ProductManager;
     $manager = new ProductManager();
 ?>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="public/css/style.css">
         <title>Ajout produit</title>
     </head>
     <body>

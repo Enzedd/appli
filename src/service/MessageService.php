@@ -4,6 +4,8 @@
      * 
      * @author virgile.gibello@gmail.com
      */
+    namespace App\Service;
+    
     abstract class MessageService {
 
         /**

@@ -1,8 +1,12 @@
 <?php
-    require_once "ProductManager.php";
-    $manager = new ProductManager(); 
+    require "vendor/autoload.php";
+    
     session_start();
-    require_once "MessageService.php";
+
+    use App\Manager\ProductManager;
+    use App\Service\MessageService as MS; 
+
+    $manager = new ProductManager();
 
     if(isset($_GET['action'])){
 
@@ -23,7 +27,7 @@
                 //on insère la ligne panier dans le panier en session
                 $_SESSION['cart'][] = $order; 
                 //un petit message de succès avec un lien pour aller au panier
-                MessageService::setMessage("success", 
+                MS::setMessage("success", 
                     "Produit ajouté au panier - <a href='recap.php'>Voir mon panier</a>"
                 );
                 //on redirige vers la liste des produits
@@ -39,11 +43,11 @@
                     if($name && $price){
                         
                         $manager->insert($name, $price);    //ajout en base de données
-                        MessageService::setMessage("success", "Produit ajouté avec succès !!");                        
+                        MS::setMessage("success", "Produit ajouté avec succès !!");                        
                     }
-                    else MessageService::setMessage("error", "Formulaire mal rempli, réessayez !");
+                    else MS::setMessage("error", "Formulaire mal rempli, réessayez !");
                 }
-                else MessageService::setMessage("error", "Vous n'avez pas soumis le formulaire...");
+                else MS::setMessage("error", "Vous n'avez pas soumis le formulaire...");
                 header("Location:index.php");
                 die;
 
@@ -52,23 +56,23 @@
                 if(isset($_SESSION['cart'][$_GET['index']])){
                     $indexProduit = $_GET['index'];
                     unset($_SESSION['cart'][$indexProduit]);
-                    MessageService::setMessage("success", "Produit supprimé avec succès !!");
+                    MS::setMessage("success", "Produit supprimé avec succès !!");
                 }
-                else MessageService::setMessage("error", "Le produit demandé n'existe pas...");
+                else MS::setMessage("error", "Le produit demandé n'existe pas...");
                 break;
 
             //vider la session
             case "clear": 
                 if(!empty($_SESSION['cart'])){
                     unset($_SESSION['cart']);
-                    MessageService::setMessage("success", "Liste des produits effacée !!");
+                    MS::setMessage("success", "Liste des produits effacée !!");
                 }
                 break;
 
             //supprimer un produit en base de données
             case "suppr": 
                 $manager->delete($_GET['id']);
-                MessageService::setMessage("success", "Produit supprimé avec succès !");
+                MS::setMessage("success", "Produit supprimé avec succès !");
                 header("Location:form.php");
                 die;
                 

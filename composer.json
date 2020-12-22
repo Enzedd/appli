@@ -1,14 +1,19 @@
 {
-    "name": "enzo/applimaster",
+    "name": "stagiaire/appli",
     "type": "project",
-    "license": "None",
+    "description" : "Tiens la voila ta description !!",
+    "license": "GNU",
     "authors": [
         {
-            "name": "Enzedd",
-            "email": "homannenzo@gmail.com"
+            "name": "Squalli",
+            "email": "virgile.gibello@gmail.com"
         }
     ],
-    "require": {
-        "dompdf/dompdf": "^0.8.6"
+    "require": {},
+    
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
     }
 }
