@@ -22,7 +22,7 @@
                 <?= $page ?>
             </main>
             <footer>
-                <p>&copy; 2020 - Virgile interactive</p>
+                <p>&copy; 2020 - *insert Copyright*</p>
             </footer>
         </div>
         

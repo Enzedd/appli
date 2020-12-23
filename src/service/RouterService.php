@@ -66,6 +66,6 @@
             $id = $params[2] ?? null;
             
             header("Location:index.php?ctrl=$ctrl&action=$action&id=$id");
-            return;
+            die;
         }
     }

@@ -21,7 +21,7 @@
                     "</h3>",
                     "<p>", $prod->getPrice(true), "&nbsp;€</p>",
                     "<p>", 
-                        "<a href='traitement.php?action=incart&id=",$prod->getId(),"'>",
+                        "<a href='?ctrl=cart&action=incart&id=",$prod->getId(),"'>",
                             "Ajouter au panier",
                         "</a>",
                     "</p>",

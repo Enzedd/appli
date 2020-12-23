@@ -17,6 +17,6 @@
             <?= $product->getPrice(true) ?>&nbsp;€
         </p>
         <p>
-            <a href="">Ajouter au panier</a>
+            <a href='?ctrl=cart&action=incart&id=<?= $product->getId() ?>'>Ajouter au panier</a>
         </p>
     </article>

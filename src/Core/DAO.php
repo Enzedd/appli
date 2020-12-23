@@ -7,7 +7,7 @@
 
         public function __construct(){
             $this->pdo = new \PDO(
-                "mysql:host=localhost:3306;dbname=appli",
+                "mysql:host=localhost:3306;dbname=applic",
                 "root",
                 "",
                 [
